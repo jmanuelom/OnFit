@@ -1,42 +1,101 @@
 <template>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <!-- Navbar content -->
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark p-3 fixed-top" id="mainNav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
+          <a class="navbar-brand" href="#">
+            <img src="/static_files/images/logos/diviLogo.png" alt="Divi Logo" id="logoImg">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto ">
+              <li class="nav-item">
+                <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#">Pricing</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Company
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Hola</a></li>
+                  <li><a class="dropdown-item" href="#">About Us</a></li>
+                  <li><a class="dropdown-item" href="#">Contact us</a></li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-</nav></template>
+      
+      <div id="hero" style="background:url('/static_files/images/html/adventure.jpg') no-repeat;background-size:cover;background-position:top center">
+        <h1 class="display-3 text-center text-white greatVibesFont" style="padding-top:45vh;padding-bottom:85vh;text-shadow : 0px 3px 4px rgba(0,0,0,0.8)">
+          Adventure Unlimited. Explore the West
+        </h1>
+      </div>
+      <div class="vh-100"></div>
+</template>
+<script>
+    var mainNav = document.getElementById('mainNav')
+      var logoImg = document.getElementById('logoImg')
+      var hero = document.getElementById('hero')
+      var heroActive = false // To enhance performance, I chose this global variable to track the navbar changes.
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) {
+          if (!heroActive) {
+            heroActive = true
+            mainNav.classList.add('bg-dark')
+            if(window.innerWidth < 956) return;
+            logoImg.className = 'consize'
+          }
+        } else {
+          if (heroActive) {
+            heroActive = false
+            mainNav.classList.remove('bg-dark')
+            if(window.innerWidth < 956) return;
+            logoImg.className = ''
+          }
+        }
+      })
+</script>
+<style scoped>
+    @font-face {
+      	font-family: GreatVibes;
+      	src: url('/static_files/fonts/gv.ttf');
+      }
+      
+      .greatVibesFont {
+        font-family : GreatVibes;
+      }
+      
+      .navbar-brand img {
+        width:100%;
+        max-width:640px;
+        position:absolute;
+        transition:all 300ms linear;
+        transform-origin: 0% 0%;
+      }
+      
+      @media screen and (max-width:956px){
+        .navbar-brand img {
+          width:100%;
+          max-width:240px;
+          position:relative;
+        }
+      }
+      
+      img.consize {
+        transform : translateY(-20px) scale(0.25);
+      }
+      #mainNav {
+        transition : background 300ms linear;
+      }
+</style>
